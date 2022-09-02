@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginRight="16dp"
+    app:cardBackgroundColor="#33000000"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:id="@+id/ivImagePoke"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:contentDescription="@string/imagepokemon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tvNumPoke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#455A64"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:text="Nº 001" />
+
+        <TextView
+            android:id="@+id/tvNamePoke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="82dp"
+            android:textColor="#313131"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/ivImagePoke"
+            app:layout_constraintTop_toBottomOf="@+id/tvNumPoke"
+            tools:text="Charmander" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivImagePoke"
+            app:layout_constraintTop_toBottomOf="@+id/tvNamePoke">
+
+            <TextView
+                android:id="@+id/tvType1"
+                android:layout_width="100dp"
+                android:layout_height="18dp"
+                android:background="#A4ACAF"
+                android:textAlignment="center"
+                android:textColor="#212121"
+                android:textSize="12sp"
+                tools:text="Type" />
+
+            <TextView
+                android:id="@+id/tvType2"
+                android:layout_width="100dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="10dp"
+                android:background="#A4ACAF"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="#212121"
+                android:textSize="12sp"
+                tools:text="Fire" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
