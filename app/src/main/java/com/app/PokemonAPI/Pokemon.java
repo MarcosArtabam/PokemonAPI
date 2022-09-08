@@ -1,10 +1,18 @@
 package com.app.PokemonAPI;
 
-public class Pokemon {
+import java.util.List;
 
-  private int num;
+public class Pokemon{
+
+  private Integer num;
   private String name;
+  private List<PokemonType> types;
   private String url;
+
+  String type;
+  public String getType() {
+    return type;
+  }
 
   public String getName() {
     return name;
@@ -22,7 +30,7 @@ public class Pokemon {
     this.url = url;
   }
 
-  public int getNum() {
+  public Integer getNum() {
     String[] urlPartes = url.split("/");
     return Integer.parseInt(urlPartes[urlPartes.length - 1]);
   }
@@ -31,3 +39,4 @@ public class Pokemon {
     this.num = num;
   }
 }
+

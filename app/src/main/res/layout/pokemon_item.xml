@@ -9,6 +9,7 @@
     android:layout_marginTop="16dp"
     android:layout_marginEnd="16dp"
     android:layout_marginRight="16dp"
+    android:clickable="true"
     app:cardBackgroundColor="#33000000"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -17,10 +18,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp">
 
         <ImageView
             android:id="@+id/ivImagePoke"
@@ -35,60 +36,34 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/tvNumPoke"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#455A64"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints"
-            tools:text="Nº 001" />
-
-        <TextView
             android:id="@+id/tvNamePoke"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="82dp"
-            android:textColor="#313131"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ivImagePoke"
-            app:layout_constraintTop_toBottomOf="@+id/tvNumPoke"
-            tools:text="Charmander" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivImagePoke"
-            app:layout_constraintTop_toBottomOf="@+id/tvNamePoke">
+            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintStart_toStartOf="@+id/ivImagePoke"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Charmander"/>
 
-            <TextView
-                android:id="@+id/tvType1"
-                android:layout_width="100dp"
-                android:layout_height="18dp"
-                android:background="#A4ACAF"
-                android:textAlignment="center"
-                android:textColor="#212121"
-                android:textSize="12sp"
-                tools:text="Type" />
-
-            <TextView
-                android:id="@+id/tvType2"
-                android:layout_width="100dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="10dp"
-                android:background="#A4ACAF"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textColor="#212121"
-                android:textSize="12sp"
-                tools:text="Fire" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/tvNumPoke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="10dp"
+            tools:text="Nº 001" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

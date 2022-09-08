@@ -5,9 +5,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.pm.ActivityInfo;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
 import com.app.PokemonAPI.databinding.ActivityMainBinding;
 
@@ -36,56 +41,34 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        Objects.requireNonNull(getSupportActionBar()).hide();
+        setTitle("Pokédex");
+        //Objects.requireNonNull(getSupportActionBar()).hide();
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         AnimationDrawable animationDrawable = (AnimationDrawable) binding.fundo.getBackground();
         animationDrawable.setEnterFadeDuration(2000);
         animationDrawable.setExitFadeDuration(4000);
         animationDrawable.start();
-
         recyclerView = (RecyclerView) findViewById(R.id.rvPokemons);
         PokeAdapter = new PokeAdapter(this);
         recyclerView.setAdapter(PokeAdapter);
         recyclerView.setHasFixedSize(true);
         LinearLayoutManager LayoutManager = new LinearLayoutManager(MainActivity.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(LayoutManager);
+        MediaPlayer pokemusic = MediaPlayer.create(getApplication(), R.raw.poke8bit);
+        playmusic(pokemusic);
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-
-                if (dy > 0) {
-                    int visibleItemCount = LayoutManager.getChildCount();
-                    int totalItemCount = LayoutManager.getItemCount();
-                    int pastVisibleItems = LayoutManager.findFirstVisibleItemPosition();
-
-                    if (carregar) {
-                        if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
-                            Log.i(TAG, "Fim da Lista - Pokemons Originais");
-
-                            carregar = false;
-                            offset += 20;
-                            PokeDados(offset);
-                        }
-                    }
-                }
-            }
-        });
-
-            retrofit = new Retrofit.Builder()
-                    .baseUrl("https://pokeapi.co/api/v2/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-
-            carregar = true;
-            offset = 0;
-            PokeDados(offset);
-        }
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://pokeapi.co/api/v2/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        carregar = true;
+        offset = 0;
+        PokeDados(offset);
+    }
 
         private void PokeDados ( int offset){
             PokeJSON service = retrofit.create(PokeJSON.class);
-            Call<PokeResults> PokeResultsCall = service.ChamarListaPokemon(20, offset);
+            Call<PokeResults> PokeResultsCall = service.ChamarListaPokemon(150, offset);
 
             PokeResultsCall.enqueue(new Callback<PokeResults>() {
                 @Override
@@ -94,11 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     if (response.isSuccessful()) {
                         PokeResults pokeResposta = response.body();
                         ArrayList<Pokemon> listaPokemon = pokeResposta.getResults();
-                      //  PokeAdapter.ListarPokemons(listaPokemon);
-                        for (int i = 0; i < listaPokemon.size(); i++){
-                            Pokemon p = listaPokemon.get(i);
-                            Log.i(TAG, "Pokemon:"+ p.getName());
-                        }
+                        PokeAdapter.ListarPokemons(listaPokemon);
                     } else {
                         Log.e(TAG, " onResponse: " + response.errorBody());
                     }
@@ -111,4 +90,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        public void playmusic(MediaPlayer music){
+            music.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    music.start();
+                    music.setLooping(true);
+                }
+            });
+            music.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    music.release();
+                }
+            });
+    }
 }
